@@ -25,11 +25,17 @@ function TextComponent() {
 
   return (
     <div>
-      <div className="font-bold text-center text-2xl m-4">Ask My Book</div>
+      <div className="font-bold text-center text-2xl m-4"><span>Ask My Book</span><InspirationComponent /></div>
       <div className="text-lg text-gray-500 m-4">This is an experiment in using AI to make my book's content more accessible. Ask a question and AI'll answer it in real-time:</div>
     </div>
   );
 };
+
+function InspirationComponent() {
+  return (
+    <a className="ml-1 text-gray-500 hover:underline cursor-pointer hover:text-black" target="_blank" href="https://twitter.com/search?q=to%3Ashl%20(business%20OR%20product%20OR%20entrepreneur%20OR%20money%20OR%20market)%20%3F&src=typed_query&f=top">?</a>
+  );
+}
 
 function TestimonialsComponent() {
   const [loaded, setLoaded] = useState(false);
