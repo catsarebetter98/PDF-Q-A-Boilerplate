@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TwitterTweetEmbed } from 'react-twitter-embed';
+import TextBox from './TextBox';
 
 function HeroImageComponent() {
   const imageUrl = 'https://askmybook.com/static/book.2a513df7cb86.png';
@@ -22,7 +23,6 @@ function HeroImageComponent() {
 };
 
 function TextComponent() {
-
   return (
     <div>
       <div className="font-bold text-center text-2xl m-4"><span>Ask My Book</span><InspirationComponent /></div>
@@ -76,6 +76,7 @@ function App() {
         <TextComponent />
       </header>
       <div>
+        <TextBox />
         <TestimonialsComponent />
       </div>
       <footer className="flex flex-row justify-center items-center text-lg text-gray-500">
