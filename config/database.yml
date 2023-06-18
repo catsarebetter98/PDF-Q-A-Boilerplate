@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: phase_4_deploying_demo_app_development
+  database: askmybook
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
