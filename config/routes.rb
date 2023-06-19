@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'question/:id', to: 'questions#show', as: 'question'
+
   namespace :api do
   end
   # all other routes will be load our React application

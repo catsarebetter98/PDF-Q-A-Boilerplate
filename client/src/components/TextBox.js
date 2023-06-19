@@ -15,7 +15,7 @@ function AnswerContainer({ answer, askAnotherQuestion }) {
   );
 }
 
-function AskMyBook() {
+function TextBox() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [isAsking, setIsAsking] = useState(false);
