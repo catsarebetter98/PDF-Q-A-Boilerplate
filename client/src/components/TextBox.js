@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function AnswerContainer({ answer, askAnotherQuestion }) {
   return (
     <p className={`w-full ${answer ? '' : 'hidden'}`}>
-      <div className='my-4'>
+      <div className="my-4">
         <strong>Answer:</strong> <span>{answer}</span>{' '}
       </div>
       <button
@@ -44,7 +44,7 @@ function TextBox({ questionProp, answerProp }) {
     try {
       const response = await axios.post('/ask', { question });
       const { answer, id } = response.data;
-  
+
       setAnswer(answer);
       setNewQuestionId(id);
       history.push('/question/' + id);
@@ -74,17 +74,19 @@ function TextBox({ questionProp, answerProp }) {
 
   return (
     <div className="p-2">
-      <div className="mt-8">
+      <div className="mt-8 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
         <form onSubmit={handleSubmit}>
-          <textarea
-            name="question"
-            id="question"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            className="border border-black rounded text-lg p-2 w-full"
-          ></textarea>
-          {
-            !answer &&
+          <div className="relative">
+            <textarea
+              name="question"
+              id="question"
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              className="border border-black rounded text-lg p-2 w-full"
+              width
+            ></textarea>
+          </div>
+          {!answer && (
             <div className="flex justify-center gap-4 mt-4">
               <button
                 type="submit"
@@ -102,7 +104,7 @@ function TextBox({ questionProp, answerProp }) {
                 I'm feeling lucky
               </button>
             </div>
-          }
+          )}
         </form>
 
         <AnswerContainer answer={answer} askAnotherQuestion={askAnotherQuestion} />

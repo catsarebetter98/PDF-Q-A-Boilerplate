@@ -73,7 +73,7 @@ function TestimonialsComponent() {
 function App() {
   return (
     <div className="flex flex-col justify-center items-center w-screen">
-      <header>
+      <header className="mt-8">
         <HeroImageComponent />
         <TextComponent />
       </header>
