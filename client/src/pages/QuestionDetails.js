@@ -9,7 +9,7 @@ function QuestionDetails(props) {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get(`/question/${questionId}`);
+        const response = await axios.get(`/fetch_question/${questionId}`);
         setQuestion(response.data);
       } catch (error) {
         console.error(error);
