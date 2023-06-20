@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function AnswerContainer({ answer, askAnotherQuestion }) {
   return (
-    <p className={`hidden ${answer ? 'showing' : ''}`}>
-      <strong>Answer:</strong> <span>{answer}</span>{' '}
+    <p className={`w-full ${answer ? '' : 'hidden'}`}>
+      <div className='my-4'>
+        <strong>Answer:</strong> <span>{answer}</span>{' '}
+      </div>
       <button
         className="block bg-black text-white px-4 py-2 rounded"
         onClick={askAnotherQuestion}
@@ -15,11 +18,13 @@ function AnswerContainer({ answer, askAnotherQuestion }) {
   );
 }
 
-function TextBox() {
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
+function TextBox({ questionProp, answerProp }) {
+  const [question, setQuestion] = useState(questionProp);
+  const [answer, setAnswer] = useState(answerProp);
   const [isAsking, setIsAsking] = useState(false);
   const [newQuestionId, setNewQuestionId] = useState('');
+
+  const history = useHistory();
 
   useEffect(() => {
     const questionInput = document.getElementById('question');
@@ -39,8 +44,10 @@ function TextBox() {
     try {
       const response = await axios.post('/ask', { question });
       const { answer, id } = response.data;
+  
       setAnswer(answer);
       setNewQuestionId(id);
+      history.push('/question/' + id);
     } catch (error) {
       console.error(error);
       setAnswer('');
@@ -66,8 +73,7 @@ function TextBox() {
   };
 
   return (
-    <div className="max-w-70ch mx-auto p-2">
-
+    <div className="p-2">
       <div className="mt-8">
         <form onSubmit={handleSubmit}>
           <textarea
@@ -75,26 +81,28 @@ function TextBox() {
             id="question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="w-full border border-black rounded text-lg p-2"
+            className="border border-black rounded text-lg p-2 w-full"
           ></textarea>
-
-          <div className="flex justify-center gap-4 mt-4">
-            <button
-              type="submit"
-              id="ask-button"
-              disabled={isAsking}
-              className="bg-black text-white px-4 py-2 rounded"
-            >
-              {isAsking ? 'Asking...' : 'Ask question'}
-            </button>
-            <button
-              id="lucky-button"
-              className="bg-black text-white px-4 py-2 rounded"
-              onClick={handleFeelingLucky}
-            >
-              I'm feeling lucky
-            </button>
-          </div>
+          {
+            !answer &&
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                type="submit"
+                id="ask-button"
+                disabled={isAsking}
+                className="bg-black text-white px-4 py-2 rounded"
+              >
+                {isAsking ? 'Asking...' : 'Ask question'}
+              </button>
+              <button
+                id="lucky-button"
+                className="bg-black text-white px-4 py-2 rounded"
+                onClick={handleFeelingLucky}
+              >
+                I'm feeling lucky
+              </button>
+            </div>
+          }
         </form>
 
         <AnswerContainer answer={answer} askAnotherQuestion={askAnotherQuestion} />

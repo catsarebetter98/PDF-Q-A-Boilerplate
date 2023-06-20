@@ -72,7 +72,7 @@ function TestimonialsComponent() {
 
 function App() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-screen">
       <header>
         <HeroImageComponent />
         <TextComponent />
@@ -84,14 +84,10 @@ function App() {
         <Route path="/">
           <div>
             <TextBox />
-            <TestimonialsComponent />
           </div>
         </Route>
       </Switch>
-      <div>
-        <TextBox />
-        <TestimonialsComponent />
-      </div>
+      <TestimonialsComponent />
       <footer className="flex flex-row justify-center items-center text-lg text-gray-500">
         Project by 
         <a className="m-1 hover:underline" target="_blank" href="https://www.twitter.com/catsarecuter98">Hide Shidara</a> • 

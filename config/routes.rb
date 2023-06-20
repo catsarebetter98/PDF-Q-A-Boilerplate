@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'question/:id', to: 'questions#show', as: 'question'
+  post '/ask', to: 'questions#ask'
 
   namespace :api do
   end

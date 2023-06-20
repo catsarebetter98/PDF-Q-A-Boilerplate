@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import TextBox from '../components/TextBox';
 
 function QuestionDetails(props) {
   const [question, setQuestion] = useState(null);
@@ -8,9 +9,8 @@ function QuestionDetails(props) {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get(`/api/question/${questionId}`);
+        const response = await axios.get(`/question/${questionId}`);
         setQuestion(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -25,8 +25,7 @@ function QuestionDetails(props) {
 
   return (
     <div>
-      <h2>{question.question}</h2>
-      <p>{question.answer}</p>
+        <TextBox questionProp={question.question} answerProp={question.answer} />
     </div>
   );
 }
